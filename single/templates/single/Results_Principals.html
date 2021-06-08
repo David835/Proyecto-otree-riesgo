@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+	Resultado
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block content %}
+	<p>
+		La computadora le ha asignado la siguiente función: <strong>cliente</strong>
+	</p>
+	<p>
+		Tienes la estrategia de inversión <em>{{ player.category }}</em> comunicado a su asesor financiero.</p>
+	<p>
+		Su asesor financiero ha decidido invertir {{player.investment}} en el activo de riesgo.
+	</p>
+	<p>
+	{% if player.investment_outcome == 1 %}
+
+		La inversión fue exitosa.
+
+	{% else %}
+
+		La inversión no tuvo éxito.
+
+	{% endif %}
+	</p>
+
+	<p>
+		Por lo tanto, su pago de la Parte 2 es <strong>{{ player.payoff }}</strong>.
+	</p>
+
+	<p>
+		Ahora tiene la opción de enviar un mensaje corto a su asesor financiero expresando su satisfacción o insatisfacción con su decisión.</p>
+	<p>
+	{% formfield player.message %}
+
+    <div align="right">{% next_button %}</div>
+{% endblock %}

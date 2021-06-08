@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Pagos
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <p>
+    	Su pago de hoy se compone de la siguiente manera:
+    </p>
+
+    <p>
+    	Pago por comparecencia puntual: {{ player.participation_fee }}
+    </p>
+
+    <p>
+    	Resultado de la parte 2: {{ player.payoff }}
+    </p>
+
+    <p>
+    	Pago total: <strong>{{ participant.payoff_plus_participation_fee }}</strong>
+    </p>
+
+
+    <p>
+    	Gracias por participar en este experimento. Por favor, permanezca sentado hasta que le llamemos para salir según su número de asiento. Ya puede rellenar su recibo.
+    </p>
+
+
+{% endblock %}

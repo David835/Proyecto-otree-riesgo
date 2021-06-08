@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Bienvenido
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <p><strong>Estimado participante,</strong><br /> <strong>Estimado participante,</strong></p>
+    <p>por tu aparición puntual ahora recibirás {{ player.participation_fee }}. Se espera que todo el experimento dure aprox. {{ Constants.duration }} min. En el experimento de hoy, las ayudas y la comunicación entre los participantes están prohibidas. Si tiene alguna pregunta en cualquier momento, envienos un mensaje.</p>
+    <p>El experimento consta de un total de dos partes por las que pasará una tras otra. Ambas partes pueden afectar sus ganancias y, por lo tanto, afectar su pago final.</p>
+    <p>La evaluación del experimento es anónima, no hay información personal vinculada a los datos del experimento. No se pueden sacar conclusiones sobre su persona. </p>
+
+    <div align="right">{% next_button %}</div>
+
+{% endblock %}
