@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %} 
+    Parte 2 - Instrucciones (3/3)
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block styles%}
+    <style type="text/css">
+        .controls label {
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p><strong>Procedimiento</strong></p>
+    <p>En este experimento, todos los participantes asumirán inicialmente ambos papeles: El papel del cliente y el papel del asesor financiero. 
+    Cada participante es inicialmente un cliente y selecciona una de las cinco estrategias de inversión de la primera parte para señalar su deseo de inversión al asesor financiero.<br/>
+    A continuación, cada participante asume el papel de asesor financiero y toma decisiones de inversión reales para sus cinco clientes.</p>
+    <p>A continuación, el ordenador selecciona aleatoriamente a la mitad de los participantes cuya decisión de asesoramiento resulta relevante para el pago. Es decir, los participantes seleccionados reciben el pago por su decisión como asesor financiero. La otra mitad de los participantes recibe el pago por su papel de cliente y, en consecuencia, recibe el resultado de la inversión resultante de la decisión de su respectivo asesor financiero. El ordenador determina de forma aleatoria si la oportunidad de inversión de riesgo es un éxito o un fracaso para cada participante.</p>
+
+    <p><strong>Preguntas de control</strong></p>
+    {% formfield player.question_5 label="Los participantes en este experimento asumen ambos papeles por turnos." %}
+    
+    {% formfield player.question_6 label="Para cada participante, tanto la decisión como cliente como la de asesor son relevantes para el pago." %}
+
+    <div align="right">{% next_button %}</div>
+
+{% endblock %}
