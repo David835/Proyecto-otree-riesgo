@@ -2,7 +2,7 @@
 {% load staticfiles otree %}
 
 {% block title %}
-	Resultado
+    Resultado
 {% endblock %}
 
 {% block scripts %}
@@ -16,15 +16,16 @@
 
 {% block content %}
 	<p>
-		La computadora le ha asignado la siguiente función: <strong>cliente</strong>
+		La computadora le ha asignado la siguiente función: <strong>Cliente</strong>
 	</p>
 	<p>
-		Tienes la estrategia de inversión <em>{{ player.category }}</em> comunicado a su asesor financiero.</p>
-	<p>
-		Su asesor financiero ha decidido invertir {{player.investment}} en el activo de riesgo.
+		Tienes la estrategia de inversión <em>{{ player.category }}</em> comunicado a su asesor financiero.
 	</p>
 	<p>
-	{% if player.investment_outcome == 1 %}
+		Su asesor financiero ha decidido, {{ player.investment }} invertir en el activo de riesgo.
+	</p>
+	<p>
+	{% if group.investment_success %}
 
 		La inversión fue exitosa.
 
@@ -40,9 +41,12 @@
 	</p>
 
 	<p>
-		Ahora tiene la opción de enviar un mensaje corto a su asesor financiero expresando su satisfacción o insatisfacción con su decisión.</p>
+		Ahora tiene la opción de enviar un mensaje corto a su asesor financiero expresando su satisfacción o insatisfacción con su decisión.
+	</p>
 	<p>
 	{% formfield player.message %}
 
     <div align="right">{% next_button %}</div>
 {% endblock %}
+
+

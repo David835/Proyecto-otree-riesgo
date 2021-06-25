@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Ahora toma la decisión como asesor financiero
+{% endblock %}
+
+{% block content %}
+            
+    </script>
+
+
+<p>
+    Escoga solo 1 OPCION
+</p>
+<p>
+{% formfield player.investments %}
+
+
+
+
+    <div align="right">{% next_button %}</div>
+{% endblock %}
