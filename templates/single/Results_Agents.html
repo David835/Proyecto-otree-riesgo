@@ -22,20 +22,20 @@
 		Tu cliente te tiene la estrategia de inversión <em>{{ player.category_from_principal }}</em> comunica.
 	</p>
 	<p>
-		Ha tomado una decisión por su cliente. {{ player.invested_amount }} invertir en el activo de riesgo.
+		Ha tomado una decisión por su cliente. {{ player.decision_for_p1 }} invertir en el activo de riesgo.
 	</p>
 	<p>
-	{% if player.outcome_of_principal == 1 %}
+	{% if group.investment_success %}
 
 		La inversión fue exitosa.
 
-
-	{% elif player.outcome_of_principal == 0 %}
+	{% else %}
 
 		La inversión no tuvo éxito.
 
 	{% endif %}
 	</p>
+
 	<p>
 		Por lo tanto, el pago de su cliente de la Parte 2 es {{ player.payoff_of_principal }}.
 
@@ -48,12 +48,12 @@
 
 	{% elif player.compensation == "variable_result" %}
 
-		Recibe un pago fijo de {{ Constants.variable_payment }} y además están provistos de	{{ Constants.share_result }}% involucrado en el resultado de su cliente.<br/>
-		Por lo tanto, su pago es <strong>{{ player.payoff }}</strong>.
+		Recibe un pago fijo de {{ Constants.fixed_payment }} y además están provistos de {{ Constants.share_result }}% involucrado en el resultado de su cliente.<br/>
+		Ihre Bezahlung beträgt daher <strong>{{ player.payoff }}</strong>.
 
 	{% elif player.compensation == "variable_profit" %}
 
-		Recibe un pago fijo de {{ Constants.variable_payment }} y además están provistos de	{{ Constants.share_profit }}% involucrado en el beneficio de su cliente.<br/>
+		Recibe un pago fijo de {{ Constants.fixed_payment }} y además están provistos de {{ Constants.share_profit }}% involucrado en las ganancias de su cliente.<br/>
 		Por lo tanto, su pago es <strong>{{ player.payoff }}</strong>.
 
 	{% endif %}
@@ -68,11 +68,5 @@
 	</p>
     <div align="right">{% next_button %}</div>
 {% endblock %}
-
-
-
-
-
-	
 
 
