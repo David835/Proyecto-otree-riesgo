@@ -11,14 +11,15 @@ doc = """
 Risk Taking for Others Experiment 2018
 """
 
-
+#Se crea una clase de constantes que contiene el nombre que tendra el proyecto en la pagina de otree, el numero de rondas,
+#el nombre de las categorias, asi como los pagos que habra si es que se usa un modelo fixed o variable
 class Constants(BaseConstants):
 	name_in_url = 'single'
 	players_per_group = None
 	num_rounds = 1
 
 
-	category_names = ['muy conservador', 'conservador', 'equilibrado', 'enfocado al crecimiento', 'ofensivo']
+	category_names = ['muy conservador', 'conservador', 'equilibrado', 'agresivo', 'muy agresivo']
 
 	duration = 45
 
@@ -32,6 +33,7 @@ class Constants(BaseConstants):
 	share_result = 25				# En porcentaje
 	share_profit = 35
 
+#Se crea una clase que contiene clases relacionadas a la creacion de la sesion y el grupo
 class Subsession(BaseSubsession):
 
 	def creating_session(self):
@@ -42,49 +44,50 @@ class Subsession(BaseSubsession):
 			player.random_number = random_number
 	
 	def set_groups(self):
-		# Create category lists
+		# se crea la lista de categorias
 		cat_lists = dict.fromkeys(Constants.category_names)
 		for element in cat_lists:
 			cat_lists[element] = []
 
-		# sort players into category lists by their choices
+		# se organiza en listas a los jugadores en categorias en funcion a sus desiciones
+		# (es mas util cuando existen mas de 2 jugadores)
 		for player in self.get_players():
 			for cat_name in cat_lists:
 				if player.category == cat_name:
 					cat_lists[cat_name].append(player)
 					
-
+		#se define el numero de jugadores y el numero de personas por cada grupo 
 		total_players = len(self.get_players())
 		group_size = 2
 		number_groups = int(total_players / group_size)
 
 		# print(cat_lists)
-
+		#se forma los grupos en funcion del numero de grupos
 		groups = [[] for i in range(number_groups)]
 		temp = []
 		for i in range(len(Constants.category_names)):
 			for j in range(len(cat_lists[Constants.category_names[i]])):
 				temp.append(cat_lists[Constants.category_names[i]][j])
-		
-		# print(temp)
+		    #Se asignan las mismas categorias para cada grupo
+			
+			# print(temp)
 		for i in range(number_groups):
 			#print(temp[i::number_groups])
 			groups[i].append(temp[i::number_groups])
-
-		# CK: I am not sure what you are doing here
-		# print([l[0] for l in groups])		# hace un corchete menos
+		
+		# matriz por grupo		
 		matrix = [l[0] for l in groups]
 
 		self.set_group_matrix(matrix)
 		# print(self.get_group_matrix())
 
-		# let players know which group they are in
+		# se usa para permitir que los participantes sepan en que grupo estan
 		group_matrix = self.get_group_matrix()
 		for group in group_matrix:
 			for player in group:
 				player.my_group_id = group_matrix.index(group) + 1 #probablemente porque aparece al inicio
 
-
+	# se usa para darle las categorias a cada participante
 	def communicate_categories(self):
 		for group in self.get_groups():
 			for player in group.get_players():
@@ -92,10 +95,10 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-	investment_success = models.BooleanField(doc="Turns true if the investment was successful and 0 in case it was not.")
+	investment_success = models.BooleanField(doc="es 1 o verdadero si la inversion fue exitosa y 0 en otro caso.")
 	
 	def after_investments(self):
-		self.investment_success = (random.random() <= 1/3)
+		self.investment_success = round(random.random())
 		for player in self.get_players():
 			player.get_investment()
 			player.calculate_payoffs_principals()
