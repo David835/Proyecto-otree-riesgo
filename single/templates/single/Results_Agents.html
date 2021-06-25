@@ -1,0 +1,72 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+	Resultado
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block content %}
+	<p>
+		La computadora le ha asignado la siguiente función: <strong>Asesor financiero</strong>
+	</p>
+	<p>
+		Tu cliente te tiene la estrategia de inversión <em>{{ player.category_from_principal }}</em> comunica.
+	</p>
+	<p>
+		Ha tomado una decisión por su cliente. {{ player.decision_for_p1 }} invertir en el activo de riesgo.
+	</p>
+	<p>
+	{% if group.investment_success %}
+
+		La inversión fue exitosa.
+
+	{% else %}
+
+		Die Investition war nicht erfolgreich.
+
+	{% endif %}
+	</p>
+
+	<p>
+		Por lo tanto, el pago de su cliente de la Parte 2 es {{ player.payoff_of_principal }}.
+
+	</p>
+
+	<p>
+	{% if player.compensation == "fixed" %}
+
+		Recibe un pago fijo de <strong>{{ player.payoff }}</strong>
+
+	{% elif player.compensation == "variable_result" %}
+
+		Recibe un pago fijo de {{ Constants.fixed_payment }} y además están provistos de {{ Constants.share_result }}% involucrado en el resultado de su cliente.<br/>
+		Ihre Bezahlung beträgt daher <strong>{{ player.payoff }}</strong>.
+
+	{% elif player.compensation == "variable_profit" %}
+
+		Recibe un pago fijo de {{ Constants.fixed_payment }} y además están provistos de {{ Constants.share_profit }}% involucrado en las ganancias de su cliente.<br/>
+		Por lo tanto, su pago es <strong>{{ player.payoff }}</strong>.
+
+	{% endif %}
+	</p>
+	<p>&nbsp;</p>
+
+	<p>Su cliente le dice:</p>
+	<p style="text-align: center;"><em>{{ player.message_from_principal }}</em></p>
+
+
+
+	</p>
+    <div align="right">{% next_button %}</div>
+{% endblock %}
+
+

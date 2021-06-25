@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Ahora toma la decisión como asesor financiero
+{% endblock %}
+///aqui va el calculo de retornos///
+            
+    </script>
+
+
+<p>
+    Escoga solo 1 OPCION
+</p>
+<p>
+{% formfield player.investments %}
+
+
+
+<p>&nbsp;</p>
+    <p>Como recordatorio: usted mismo distribuyó las estrategias de inversión de la siguiente manera:</p>
+    <div id="super_box">
+        <div id="left_axis_label" class="axis_label">0%</div>
+        <div id="right_axis_label" class="axis_label">100%</div>
+        <div id="axis_box">
+            <div class="category_label" id="a" style="width: {{ width_a }}px; margin-right: 0px;">
+                <div class="label">muy conservador</div>
+                <div class="category_label_handle handle_right"></div>
+            </div>
+            <div class="category_label" id="b" style="width: {{ width_b }}px; margin-right: 0px;">
+                <div class="label">conservador</div>
+                <div class="category_label_handle handle_right"></div>
+            </div>
+            <div class="category_label" id="c" style="width: {{ width_c }}px; margin-right: 0px;">
+                <div class="label">neutral</div>
+                <div class="category_label_handle handle_right"></div>
+            </div>
+            <div class="category_label" id="d" style="width: {{ width_d }}px; margin-right: 0px;">
+                <div class="label">enfocado en crecimiento</div>
+                <div class="category_label_handle handle_right"></div>
+            </div>
+            <div class="category_label" id="e" style="width: {{ width_e }}px; margin-right: 0px;">
+                <div class="label">ofensivo</div>
+                <div class="category_label_handle handle_right"></div>
+            </div>
+        </div>
+    </div>
+
+    <p>&nbsp; </p>
+    <div align="right">{% next_button %}</div>
+
+{% endblock %}

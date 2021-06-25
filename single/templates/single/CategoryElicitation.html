@@ -1,0 +1,107 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static "single/jquery-ui.min.css" %}">
+    <link rel="stylesheet" href="{% static "single/category.css" %}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "single/jquery-ui.min.js" %}"></script>
+    <script src="{% static "single/category.js" %}"></script>
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block title %}
+Parte 1
+{% endblock %}
+
+{% block content %}
+    <p>Los bancos suelen utilizar los siguientes cinco términos para diferentes estrategias de inversión:</p>
+    <div id="category_center_box">
+        <div id="category_box">
+            <div class="category_label_container">
+                <div class="category_label" id="a">
+                    <div class="label">muy conservador</div>
+                    <div class="category_label_handle handle_right"></div>
+                </div>
+            </div>
+            <div class="category_label_container">
+                <div class="category_label" id="b">
+                    <div class="label">conservador</div>
+                    <div class="category_label_handle handle_right"></div>
+                </div>
+            </div>
+            <div class="category_label_container">
+                <div class="category_label" id="c">
+                    <div class="label">equilibrado</div>
+                    <div class="category_label_handle handle_right"></div>
+                </div>
+            </div>
+            <div class="category_label_container">
+                <div class="category_label" id="d">
+                    <div class="label">agresivo</div>
+                    <div class="category_label_handle handle_right"></div>
+                </div>
+            </div>
+            <div class="category_label_container">
+                <div class="category_label" id="e">
+                    <div class="label">muy agresivo</div>
+                    <div class="category_label_handle handle_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="clear:both;">El orden de los términos es fijo. Una estrategia muy conservadora, por ejemplo, se considera menos riesgosa que una estrategia de inversión ofensiva. Ahora estamos interesados ​​en su percepción personal de estas estrategias de inversión.</p> <p>Suponga que existe<strong>una</strong>portunidad de inversión arriesgada en la que podría invertir. El dinero que no invertiría se mantendrá seguro. La siguiente escala mide la inversión en el activo de riesgo como porcentaje de sus activos totales. </p>
+
+    <div id="super_box">
+        <div id="left_axis_label" class="axis_label">0%</div>
+        <div id="right_axis_label" class="axis_label">100%</div>
+        <div id="axis_box">
+            <hr id='axis_line'> 
+            <div id="axis">
+
+            </div>
+        </div>
+        
+    </div>
+
+
+    <p>Repase las cinco estrategias de inversión una por una. Para cada estrategia, pregúntese qué rango de componentes de inversión en el activo de riesgo asocia personalmente con la estrategia respectiva.</p> 
+
+    <p>Comience con la estrategia "muy conservadora".<br>
+    Imaginese el caso:<br>
+    <strong>A partir del 0%, ¿hasta dónde describiría una inversión en la arriesgada oportunidad de inversión financiera como “muy conservadora”?</strong><br>
+    Para responder a la pregunta, arrastre la estrategia a la escala con el mouse. Luego, ajuste el tamaño del intervalo cubierto arrastrando el mouse de acuerdo con su percepción personal.</p>
+
+    <p>Luego continúe con la estrategia "orientada a la seguridad". Esto tiene que rayar directamente con lo "muy conservador", ya que se considera más riesgoso.<br>
+    Nuevamente, hágase la pregunta:<br><strong>¿Hasta qué punto describiría una inversión en la arriesgada oportunidad de inversión financiera como "orientada a la seguridad"?</strong><br>
+    Arrastra el término a la escala y luego ajusta su tamaño.</p>
+
+    <p>Proceda de la misma forma para las tres estrategias de inversión restantes.<br>
+    Al final, las cinco estrategias de inversión deben cubrir toda la escala de 0 a 100%. Esto significa que se debe asignar claramente una estrategia de inversión a cada porcentaje. Puede seguir cambiando el tamaño de los intervalos individuales incluso después del primer posicionamiento.</p>
+
+    <p><strong>No</strong> su trabajo es armar una cartera de las diversas estrategias de inversión o expresar sus propios deseos de inversión. Solo nos preocupa <strong> su percepción personal de las estrategias de inversión </strong> y cómo se relacionan individualmente con las inversiones en el activo de riesgo. Por lo tanto, no existen arreglos correctos o incorrectos.</p>
+
+    <input type="hidden" name="cat_end_rel_1" id="id_cat_end_rel_1">
+    <input type="hidden" name="cat_end_rel_2" id="id_cat_end_rel_2">
+    <input type="hidden" name="cat_end_rel_3" id="id_cat_end_rel_3">
+    <input type="hidden" name="cat_end_rel_4" id="id_cat_end_rel_4">
+    <input type="hidden" name="cat_end_rel_5" id="id_cat_end_rel_5">
+
+    <input type="hidden" name="cat_end_abs_1" id="id_cat_end_abs_1">
+    <input type="hidden" name="cat_end_abs_2" id="id_cat_end_abs_2">
+    <input type="hidden" name="cat_end_abs_3" id="id_cat_end_abs_3">
+    <input type="hidden" name="cat_end_abs_4" id="id_cat_end_abs_4">
+    <input type="hidden" name="cat_end_abs_5" id="id_cat_end_abs_5">
+
+    <p>Cuando haya organizado todas las estrategias de inversión en consecuencia, haga clic en "Siguiente".</p>
+
+    <div align="right">{% next_button %}</div>
+
+{% endblock %}

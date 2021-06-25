@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Parte 2 - Instrucciones (2/3)
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+    </script>
+{% endblock %}
+
+{% block styles%}
+    <style type="text/css">
+        .controls label {
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <p><strong>Oportunidades de inversión</strong><p>
+    <p>El asesor financiero decide qué proporción del patrimonio total del cliente se invertirá en la siguiente oportunidad de inversión de riesgo. El cliente mantiene a salvo la parte no invertida de los activos. La inversión en el activo de riesgo puede tener éxito o no:</p>
+
+    <p>Con una probabilidad de 1/3, la inversión tiene éxito. En este caso, el cliente recibe una rentabilidad de +250% sobre el capital invertido. <br/>
+    Su pago es entonces: {{ Constants.endowment_principals }} + 2,5 * Investment.
+    </p>
+    <p>
+        Con una probabilidad de 2/3 la inversión no tiene éxito. En este caso, el cliente recibe una rentabilidad del -100% sobre el capital invertido.<br />
+        Su pago es entonces: {{ Constants.endowment_principals }} - Investment.
+    </p>
+
+    <p><strong>Preguntas de control</strong></p>
+    {% formfield player.question_3  label="Supongamos que para un cliente se han invertido 4 euros en la inversión de riesgo y que la inversión ha tenido éxito.  <br/>¿Qué pago recibe el cliente?" %}
+
+    {% formfield player.question_4  label="Supongamos que para un cliente se invirtieron 6 euros en la inversión de riesgo y la inversión no tuvo éxito. <br/>¿Qué pago recibe el cliente?" %}
+
+    <div align="right">{% next_button %}</div>
+
+{% endblock %}
